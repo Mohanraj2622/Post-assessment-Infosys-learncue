@@ -1,407 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Practice Assessment</title>
+    <title>Practice Assessment</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #4a6fa5;
-            --secondary: #166088;
-            --accent: #4fc3f7;
-            --light: #f5f5f5;
-            --dark: #333;
-            --success: #4caf50;
-            --warning: #ff9800;
-            --error: #f44336;
-            --border-radius: 8px;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--light);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 20px 0;
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
-        }
-
-        h1, h2, h3 {
-            margin-bottom: 15px;
-        }
-
-        .progress-container {
-            width: 100%;
-            height: 8px;
-            background-color: #e0e0e0;
-            border-radius: 4px;
-            margin: 20px 0;
-            display: none;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background-color: var(--accent);
-            border-radius: 4px;
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-
-        .category-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-
-        .category-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            width: 300px;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .category-card h3 {
-            color: var(--secondary);
-        }
-
-        .category-card p {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .category-card .icon {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 30px;
-            color: var(--accent);
-            opacity: 0.3;
-        }
-
-        .difficulty-selector {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .difficulty-btn {
-            padding: 8px 16px;
-            margin: 0 10px;
-            border: none;
-            background-color: #e0e0e0;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .difficulty-btn.active {
-            background-color: var(--secondary);
-            color: white;
-        }
-
-        .question-section {
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .question-card {
-            background-color: white;
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
-        }
-
-        .question-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-
-        .question-number {
-            font-weight: bold;
-            color: var(--secondary);
-        }
-
-        .question-type {
-            background-color: var(--accent);
-            color: white;
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        .question-text {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .option-item {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .option-item:hover {
-            background-color: #f9f9f9;
-        }
-
-        .option-item.selected {
-            background-color: rgba(79, 195, 247, 0.2);
-            border-color: var(--accent);
-        }
-
-        .option-item input {
-            margin-right: 10px;
-        }
-
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-weight: bold;
-            transition: var(--transition);
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--secondary);
-        }
-
-        .btn-secondary {
-            background-color: #e0e0e0;
-            color: var(--dark);
-        }
-
-        .btn-secondary:hover {
-            background-color: #d0d0d0;
-        }
-
-        .btn-disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .results-section {
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-
-        .results-card {
-            background-color: white;
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .score-display {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--secondary);
-            margin: 20px 0;
-        }
-
-        .feedback-section {
-            margin: 30px 0;
-            text-align: left;
-        }
-
-        .feedback-item {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .feedback-question {
-            font-weight: bold;
-        }
-
-        .feedback-answer {
-            margin-top: 5px;
-        }
-
-        .correct {
-            color: var(--success);
-        }
-
-        .incorrect {
-            color: var(--error);
-        }
-
-        .timer {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 10px 15px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            font-weight: bold;
-            display: none;
-        }
-
-        .certificate-button {
-            margin-top: 20px;
-            background-color: var(--success);
-            color: white;
-        }
-
-        .certificate-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .certificate {
-            background-color: white;
-            width: 800px;
-            height: 600px;
-            padding: 50px;
-            border: 10px solid var(--primary);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .certificate-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .certificate-title {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .certificate-name {
-            font-size: 2rem;
-            margin: 20px 0;
-        }
-
-        .certificate-date {
-            margin-top: 20px;
-        }
-
-        .certificate-seal {
-            width: 100px;
-            height: 100px;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            color: var(--primary);
-            margin: 20px 0;
-        }
-
-        @media (max-width: 768px) {
-            .category-card {
-                width: 100%;
-            }
-            
-            .certificate {
-                width: 90%;
-                height: auto;
-                padding: 20px;
-            }
-            
-            .certificate-title {
-                font-size: 1.8rem;
-            }
-            
-            .certificate-name {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <div class="container">
-            <h1>Advanced Practice Assessment</h1>
+            <h1>Assessment Practice</h1>
             <p>Test your knowledge and skills with our comprehensive assessment platform</p>
         </div>
     </header>
 
     <div class="container">
         <div class="timer" id="timer">Time: 00:00</div>
-        
+
         <div class="progress-container" id="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
         </div>
@@ -409,33 +27,34 @@
         <!-- Category Selection Section -->
         <div class="category-section" id="category-section">
             <h2>Select an Assessment Category</h2>
-            
+
             <div class="difficulty-selector">
                 <button class="difficulty-btn" data-difficulty="beginner">Beginner</button>
                 <button class="difficulty-btn active" data-difficulty="intermediate">Intermediate</button>
                 <button class="difficulty-btn" data-difficulty="advanced">Advanced</button>
             </div>
-            
+
             <div class="category-cards">
                 <div class="category-card" data-category="communication">
                     <div class="icon"><i class="fas fa-comments"></i></div>
                     <h3>Communication Excellence</h3>
-                    <p>Evaluate your communication skills, active listening abilities, and conflict resolution techniques.</p>
-                    <span class="questions-count">5 questions</span>
+                    <p>Evaluate your communication skills, active listening abilities, and conflict resolution
+                        techniques.</p>
+                    <span class="questions-count">Take Test</span>
                 </div>
-                
+
                 <div class="category-card" data-category="behavioral">
                     <div class="icon"><i class="fas fa-users"></i></div>
                     <h3>Behavioral Excellence</h3>
                     <p>Assess your teamwork, leadership, and interpersonal skills in various scenarios.</p>
-                    <span class="questions-count">5 questions</span>
+                    <span class="questions-count">Take Test</span>
                 </div>
-                
+
                 <div class="category-card" data-category="functional">
                     <div class="icon"><i class="fas fa-cogs"></i></div>
                     <h3>Functional Excellence</h3>
                     <p>Test your knowledge of operational efficiency, innovation, and quality management.</p>
-                    <span class="questions-count">5 questions</span>
+                    <span class="questions-count">Take Test</span>
                 </div>
             </div>
         </div>
@@ -445,7 +64,7 @@
             <div class="question-card" id="current-question">
                 <!-- Question content will be loaded here -->
             </div>
-            
+
             <div class="nav-buttons">
                 <button class="btn btn-secondary" id="prev-btn">Previous</button>
                 <button class="btn btn-primary" id="next-btn">Next</button>
@@ -460,12 +79,13 @@
                 <div class="score-display">
                     <span id="score-percentage">0%</span>
                 </div>
-                <p>You answered <span id="correct-answers">0</span> out of <span id="total-questions">0</span> questions correctly.</p>
-                
+                <p>You answered <span id="correct-answers">0</span> out of <span id="total-questions">0</span> questions
+                    correctly.</p>
+
                 <div class="feedback-section" id="feedback-section">
                     <!-- Feedback will be loaded here -->
                 </div>
-                
+
                 <div class="nav-buttons">
                     <button class="btn btn-secondary" id="restart-btn">Try Again</button>
                     <button class="btn certificate-button" id="certificate-btn">Generate Certificate</button>
@@ -494,343 +114,807 @@
         const questionsDatabase = {
             communication: {
                 beginner: [
-                    { 
-                        q: "What is active listening?", 
-                        options: ["Waiting for your turn to speak", "Focusing on and understanding the speaker", "Interrupting with questions", "Nodding while thinking about something else"], 
-                        correct: [1], 
+                    {
+                        q: "David thanked me for _-----_ help rendered.",
+                        options: ["an", "the", "a"],
+                        correct: [1],
                         multiple: false,
-                        explanation: "Active listening involves fully focusing on and understanding the speaker, rather than just waiting for your turn to speak or appearing to listen while thinking about something else."
+                        explanation: "The definite article 'the' is used before specific nouns that are known to the listener."
                     },
-                    { 
-                        q: "Which of the following are important components of effective communication?", 
-                        options: ["Clarity", "Assertiveness", "Empathy", "Overconfidence"], 
-                        correct: [0, 1, 2], 
-                        multiple: true,
-                        explanation: "Clarity, assertiveness, and empathy are all important components of effective communication. Overconfidence can actually hinder effective communication."
-                    },
-                    { 
-                        q: "What is the best way to handle a disagreement in a professional setting?", 
-                        options: ["Avoid the person you disagree with", "Express your viewpoint calmly and listen to others", "Insist that you are right", "Complain to other colleagues"], 
-                        correct: [1], 
+                    {
+                        q: "I need _---_ egg for my breakfast.",
+                        options: ["The", "No article", "An"],
+                        correct: [2],
                         multiple: false,
-                        explanation: "The most professional way to handle disagreement is to express your viewpoint calmly while also listening to understand others' perspectives."
+                        explanation: "The correct article is 'An' because 'egg' starts with a vowel sound."
                     },
-                    { 
-                        q: "Which communication channel is most appropriate for delivering complex, sensitive feedback?", 
-                        options: ["Email", "Face-to-face conversation", "Text message", "Company-wide announcement"], 
-                        correct: [1], 
+                    {
+                        q: "______ hotel rooms were all booked.",
+                        options: ["an", "the", "a"],
+                        correct: [1],
                         multiple: false,
-                        explanation: "Face-to-face conversation is most appropriate for complex or sensitive feedback as it allows for immediate clarification and reading of non-verbal cues."
+                        explanation: "The definite article 'the' is used because we are referring to specific hotel rooms."
                     },
-                    { 
-                        q: "What does non-verbal communication include?", 
-                        options: ["Body language", "Tone of voice", "Facial expressions", "Written words"], 
-                        correct: [0, 1, 2], 
-                        multiple: true,
-                        explanation: "Non-verbal communication includes body language, tone of voice, and facial expressions, but not written words which are verbal communication."
+                    {
+                        q: "The only sport I like is __-__ cricket.",
+                        options: ["The", "An", "No article"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "'No article' is used with sports."
+                    },
+                    {
+                        q: "We went on _---_ holiday to Singapore.",
+                        options: ["a", "the", "an"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "'A' is used before singular, non-specific nouns."
+                    },
+                    {
+                        q: "I prefer coffee over a tea.",
+                        options: ["Correct", "Incorrect"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "Incorrect, because 'tea' is an uncountable noun and should not use 'a'."
+                    },
+                    {
+                        q: "Make hay while the sun shines.",
+                        options: ["Correct", "Incorrect"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "This is a correct proverb that means to take advantage of opportunities."
+                    },
+                    {
+                        q: "I will reach your place in a hour.",
+                        options: ["Correct", "Incorrect"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "Incorrect, because 'hour' starts with a vowel sound, so it should be 'an hour'."
                     }
+
                 ],
                 intermediate: [
-                    { 
-                        q: "What is active listening?", 
-                        options: ["Ignoring the speaker", "Focusing on the speaker and understanding their message", "Interrupting frequently", "Understanding the speaker's message without necessarily agreeing"], 
-                        correct: [1, 3], 
-                        multiple: true,
-                        explanation: "Active listening involves both focusing on the speaker to understand their message and being able to understand their message without necessarily agreeing with it."
-                    },
-                    { 
-                        q: "Which is the best approach to handle conflict in a team setting?", 
-                        options: ["Avoiding the conflict altogether", "Open communication and finding common ground", "Arguing until your point is accepted", "Ignoring the person you disagree with"], 
-                        correct: [1], 
+                    {
+                        q: "An university degree is a must for this role.",
+                        options: ["Correct", "Incorrect"],
+                        correct: [1],
                         multiple: false,
-                        explanation: "Open communication and finding common ground is the most effective way to handle conflict in a team setting."
+                        explanation: "Incorrect, because 'university' starts with a 'juː' sound (a consonant sound), so it should be 'A university degree'."
                     },
-                    { 
-                        q: "When delivering constructive criticism, what should you focus on?", 
-                        options: ["The person's character", "Specific behaviors that can be changed", "General complaints", "What others have said about the person"], 
-                        correct: [1], 
+                    {
+                        q: "Have you seen an Agra fort?",
+                        options: ["Correct", "Incorrect"],
+                        correct: [1],
                         multiple: false,
-                        explanation: "When delivering constructive criticism, focus on specific behaviors that can be changed rather than attacking someone's character or making general complaints."
+                        explanation: "Incorrect, because 'Agra' starts with a vowel letter but has a consonant sound. The correct phrase is 'Have you seen the Agra Fort?'."
                     },
-                    { 
-                        q: "Which communication barriers can lead to misunderstandings?", 
-                        options: ["Cultural differences", "Technical jargon", "Environmental noise", "Emotional states"], 
-                        correct: [0, 1, 2, 3], 
-                        multiple: true,
-                        explanation: "All of these factors can create barriers to effective communication and lead to misunderstandings."
-                    },
-                    { 
-                        q: "Which statement about feedback is true?", 
-                        options: ["Feedback should only focus on areas for improvement", "Effective feedback is specific and timely", "Feedback should always be given publicly", "Feedback is only necessary when performance is poor"], 
-                        correct: [1], 
+                    {
+                        q: "I had been to _----- Andaman and Nicobar Islands. I wanted to spend a little more time relaxing on the shores.",
+                        options: ["an", "a", "the"],
+                        correct: [2],
                         multiple: false,
-                        explanation: "Effective feedback is specific and timely, allowing the recipient to understand exactly what was done well or what needs improvement."
+                        explanation: "'The' is used because Andaman and Nicobar Islands is a specific place."
+                    },
+                    {
+                        q: "I am an English Lecturer. I love reading the works of William Shakespeare. Macbeth is ----_ interesting piece of work.",
+                        options: ["a", "an", "the"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "'An' is correct because 'interesting' starts with a vowel sound."
+                    },
+                    {
+                        q: "----- vegetables are good for health. I walked an hour and a half to fetch fresh vegetables.",
+                        options: ["The", "An", "No article"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "No article is needed because we are talking about vegetables in general."
+                    },
+                    {
+                        q: "Bob has an interview to attend today at _---_ financial company. The company has branches all over the world.",
+                        options: ["A", "An", "No article", "The"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "'A' is correct because 'financial' starts with a consonant sound."
+                    },
+                    {
+                        q: "I play the guitar for my living and earn _-_ few dollars.",
+                        options: ["an", "a", "the"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "'A few dollars' is the correct phrase when referring to an unspecified small quantity."
                     }
+
                 ],
                 advanced: [
-                    { 
-                        q: "Which communication techniques are most effective when managing cross-functional teams?", 
-                        options: ["Using technical jargon specific to your department", "Active listening and clarifying understanding", "Lengthy, detailed emails", "Assuming everyone has the same background knowledge"], 
-                        correct: [1], 
+                    {
+                        q: "Which communication techniques are most effective when managing cross-functional teams?",
+                        options: ["Using technical jargon specific to your department", "Active listening and clarifying understanding", "Lengthy, detailed emails", "Assuming everyone has the same background knowledge"],
+                        correct: [1],
                         multiple: false,
                         explanation: "Active listening and clarifying understanding are especially important when managing cross-functional teams where members have different areas of expertise and perspectives."
                     },
-                    { 
-                        q: "In a negotiation scenario, which factors contribute to a successful outcome?", 
-                        options: ["Understanding the interests of all parties", "Preparing alternative options", "Effective listening skills", "Willingness to compromise"], 
-                        correct: [0, 1, 2, 3], 
+                    {
+                        q: "In a negotiation scenario, which factors contribute to a successful outcome?",
+                        options: ["Understanding the interests of all parties", "Preparing alternative options", "Effective listening skills", "Willingness to compromise"],
+                        correct: [0, 1, 2, 3],
                         multiple: true,
                         explanation: "All of these factors contribute to successful negotiations, as they help create a balanced discussion that addresses everyone's needs."
                     },
-                    { 
-                        q: "Which communication strategies are most effective for leading organizational change?", 
-                        options: ["Transparent communication about the reasons for change", "Creating opportunities for feedback and questions", "Acknowledging concerns and resistance", "Sharing only positive aspects of the change"], 
-                        correct: [0, 1, 2], 
+                    {
+                        q: "Which communication strategies are most effective for leading organizational change?",
+                        options: ["Transparent communication about the reasons for change", "Creating opportunities for feedback and questions", "Acknowledging concerns and resistance", "Sharing only positive aspects of the change"],
+                        correct: [0, 1, 2],
                         multiple: true,
                         explanation: "Transparent communication, creating opportunities for feedback, and acknowledging concerns are all effective strategies when leading change. Sharing only positive aspects is not effective as it undermines trust."
                     },
-                    { 
-                        q: "What is the primary purpose of metacommunication?", 
-                        options: ["To communicate about the process of communication itself", "To establish dominance in a conversation", "To avoid difficult topics", "To speed up information exchange"], 
-                        correct: [0], 
+                    {
+                        q: "What is the primary purpose of metacommunication?",
+                        options: ["To communicate about the process of communication itself", "To establish dominance in a conversation", "To avoid difficult topics", "To speed up information exchange"],
+                        correct: [0],
                         multiple: false,
                         explanation: "Metacommunication refers to communicating about the process of communication itself, which helps address issues in how people are interacting."
                     },
-                    { 
-                        q: "When communicating across cultures, which approach is most effective?", 
-                        options: ["Assuming similarities until differences emerge", "Learning about cultural differences beforehand", "Treating everyone exactly the same regardless of culture", "Using advanced vocabulary to appear intelligent"], 
-                        correct: [1], 
+                    {
+                        q: "When communicating across cultures, which approach is most effective?",
+                        options: ["Assuming similarities until differences emerge", "Learning about cultural differences beforehand", "Treating everyone exactly the same regardless of culture", "Using advanced vocabulary to appear intelligent"],
+                        correct: [1],
                         multiple: false,
                         explanation: "Learning about cultural differences beforehand helps you adapt your communication style appropriately and avoid misunderstandings or offense."
                     }
                 ]
             },
+            // behavioral question section
             behavioral: {
                 beginner: [
-                    { 
-                        q: "What is a key component of effective teamwork?", 
-                        options: ["Individual achievement", "Clear roles and responsibilities", "Competition between team members", "Working independently"], 
-                        correct: [1], 
+                    {
+                        q: "A tee-shirt and pair of jeans is a formal attire.",
+                        options: ["True", "False"],
+                        correct: [1],
                         multiple: false,
-                        explanation: "Clear roles and responsibilities ensure everyone knows what they're expected to contribute, which is essential for effective teamwork."
+                        explanation: "False. A tee-shirt and jeans are considered casual attire, not formal."
                     },
-                    { 
-                        q: "Which qualities make a good team player?", 
-                        options: ["Reliability", "Effective communication", "Flexibility", "Unwillingness to compromise"], 
-                        correct: [0, 1, 2], 
-                        multiple: true,
-                        explanation: "Reliability, effective communication, and flexibility are all qualities that make someone a good team player. Unwillingness to compromise can hinder team progress."
-                    },
-                    { 
-                        q: "What is emotional intelligence?", 
-                        options: ["Being overly emotional at work", "The ability to understand and manage emotions", "Avoiding emotional topics", "Intelligence that varies with mood"], 
-                        correct: [1], 
+                    {
+                        q: "If you are seated and someone approaches and offers to shake your hand, you should stand up and shake the person's hand.",
+                        options: ["True", "False"],
+                        correct: [0],
                         multiple: false,
-                        explanation: "Emotional intelligence is the ability to understand and manage your own emotions and recognize and influence the emotions of others."
+                        explanation: "True. Standing up to shake hands shows respect and professionalism."
                     },
-                    { 
-                        q: "How can you best respond to constructive criticism?", 
-                        options: ["Become defensive", "Ignore it", "Listen openly and consider the feedback", "Criticize the person back"], 
-                        correct: [2], 
+                    {
+                        q: "When meeting a contact of the opposite sex, the man should wait for the woman to initiate the handshake.",
+                        options: ["True", "False"],
+                        correct: [0],
                         multiple: false,
-                        explanation: "Listening openly and considering feedback is the most productive way to respond to constructive criticism."
+                        explanation: "True. It is polite for the man to wait for the woman to extend her hand first."
                     },
-                    { 
-                        q: "What does showing initiative in the workplace mean?", 
-                        options: ["Waiting to be told what to do", "Taking action when you see something needs to be done", "Focusing only on assigned tasks", "Telling others what they should be doing"], 
-                        correct: [1], 
+                    {
+                        q: "You pass a co-worker in the hallway and he asks 'How are you?' You respond by telling him how tired and stressed you are.",
+                        options: ["True", "False"],
+                        correct: [1],
                         multiple: false,
-                        explanation: "Showing initiative means taking action when you see something needs to be done, without waiting to be asked or directed."
+                        explanation: "False. A simple and positive response is more appropriate in workplace interactions."
+                    },
+                    {
+                        q: "You should sit at least 3 feet away from the camera during video call meetings.",
+                        options: ["True", "False"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "True. Sitting at an appropriate distance ensures clear visibility and professional presentation."
+                    },
+                    {
+                        q: "When introducing one person to another:",
+                        options: [
+                            "Introduce the senior to the junior first and then the other way around.",
+                            "Introduce the junior to the senior first and then the other way around."
+                        ],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "The junior should be introduced to the senior first as a sign of respect."
+                    },
+                    {
+                        q: "Confidence builds when:",
+                        options: [
+                            "The pitch of your voice is not too low or high, and you pace your speech.",
+                            "You speak fast with a high raised voice so that everyone can listen to you."
+                        ],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Confidence is demonstrated through a well-paced, appropriately pitched voice."
+                    },
+                    {
+                        q: "When you are in a video conference:",
+                        options: [
+                            "Check your background, wear solid-colored clothes, and check the volume before you start.",
+                            "Wear light-colored clothes, use a beach or scenic background, and sit close to the camera."
+                        ],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "A professional appearance and setup help maintain a productive virtual meeting environment."
+                    },
+                    {
+                        q: "Small talk helps in:",
+                        options: [
+                            "Building network, confidence, and rapport.",
+                            "Filling in gaps when you have nothing to add to the discussion."
+                        ],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Small talk is an effective way to establish relationships and maintain positive workplace interactions."
+                    },
+                    {
+                        q: "Not being on time means:",
+                        options: [
+                            "You are busy.",
+                            "You are inconsiderate and do not value others' time."
+                        ],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "Being late shows a lack of consideration for others' time and responsibilities."
+                    },
+                    {
+                        q: "A proper handshake should include:",
+                        options: ["Eye contact", "Smile", "All the above"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "A firm handshake, combined with eye contact and a smile, creates a positive impression."
+                    },
+                    {
+                        q: "While responding to emails:",
+                        options: [
+                            "Reply at your leisure, at a preferred time.",
+                            "Be respectful of others' time and don’t use acronyms."
+                        ],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "Professional emails should be timely and clear, avoiding unnecessary abbreviations."
+                    },
+                    {
+                        q: "Choose the 'Don'ts' at the workplace:",
+                        options: [
+                            "Use a library voice.",
+                            "Keep a check on your neighbor’s work.",
+                            "Use speakerphones, loud noises, and music.",
+                            "Keep strong smells in check.",
+                            "Walk over to a person to speak."
+                        ],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "Loud noises, speakerphones, and disruptive music should be avoided in professional settings."
+                    },
+                    {
+                        q: "When on a virtual meeting:",
+                        options: [
+                            "Turn off the video throughout the meeting, side chat with others, and log in according to your convenience.",
+                            "Learn the software controls, don’t talk over people, share files and information, and plan your agenda."
+                        ],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "Following proper virtual meeting etiquette ensures a smooth and productive session."
+                    },
+                    {
+                        q: "When addressing someone for the first time:",
+                        options: [
+                            "Address the person with title and surname; use their full name if they are a colleague or junior.",
+                            "Call them by their first name or nickname."
+                        ],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Using proper titles and full names demonstrates professionalism and respect."
                     }
                 ],
                 intermediate: [
-                    { 
-                        q: "What are key elements of successful teamwork?", 
-                        options: ["Leadership", "Active listening", "Competing interests", "Collaboration"], 
-                        correct: [0, 1, 3], 
-                        multiple: true,
-                        explanation: "Leadership, active listening, and collaboration are all key elements of successful teamwork. Competing interests typically hinder team success."
-                    },
-                    { 
-                        q: "Which approach is most effective for resolving team conflicts?", 
-                        options: ["Avoiding the conflict", "Finding a compromise", "Having a manager decide", "Identifying the root cause and addressing it directly"], 
-                        correct: [3], 
+                    {
+                        q: "Data analysis can be performed by?",
+                        options: ["Pivot Tables", "Text Highlighters", "Keyboard Shortcuts", "None of the above"],
+                        correct: [0],
                         multiple: false,
-                        explanation: "While compromise can be useful, identifying the root cause of a conflict and addressing it directly tends to lead to more sustainable resolutions."
+                        explanation: "Pivot Tables are commonly used for data analysis."
                     },
-                    { 
-                        q: "What is the difference between a fixed mindset and a growth mindset?", 
-                        options: ["A fixed mindset believes abilities are innate; a growth mindset believes abilities can be developed", "A fixed mindset is focused; a growth mindset is scattered", "A fixed mindset is realistic; a growth mindset is idealistic", "A fixed mindset is practical; a growth mindset is theoretical"], 
-                        correct: [0], 
+                    {
+                        q: "The keyboard shortcut for selecting a cell range is ----",
+                        options: ["Shift + Arrow Keys", "Alt + Arrow Keys", "Only Arrow Keys", "Ctrl + Arrow Keys"],
+                        correct: [0],
                         multiple: false,
-                        explanation: "A fixed mindset believes that abilities and intelligence are static traits, while a growth mindset believes that abilities can be developed through dedication and hard work."
+                        explanation: "Shift + Arrow Keys allows users to select a range of cells in spreadsheets."
                     },
-                    { 
-                        q: "Which behaviors demonstrate accountability in the workplace?", 
-                        options: ["Admitting mistakes", "Meeting commitments", "Blaming others when things go wrong", "Taking ownership of results"], 
-                        correct: [0, 1, 3], 
-                        multiple: true,
-                        explanation: "Admitting mistakes, meeting commitments, and taking ownership of results all demonstrate accountability. Blaming others shows a lack of accountability."
-                    },
-                    { 
-                        q: "What is the primary characteristic of an effective leader?", 
-                        options: ["Always making decisions alone", "Being the most technically skilled person on the team", "Inspiring and empowering others", "Never changing their mind"], 
-                        correct: [2], 
+                    {
+                        q: "Commands like New, Open, Save, Save As, Print, and Export are available under ---- Menu.",
+                        options: ["Insert", "File", "View", "Help"],
+                        correct: [1],
                         multiple: false,
-                        explanation: "The primary characteristic of an effective leader is the ability to inspire and empower others to achieve shared goals."
+                        explanation: "These commands are typically found in the File menu."
+                    },
+                    {
+                        q: "----- feature sums up all the values selected in a range of columns or rows and displays the result in the next empty cell of the selected cell.",
+                        options: ["Add", "Concat", "AutoSum", "Total"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "AutoSum is used to quickly sum up a range of cells."
+                    },
+                    {
+                        q: "CTRL + F shortcut is used to _--- a specific record.",
+                        options: ["Delete", "Find", "Replace", "Insert"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "CTRL + F is used for finding specific records in a document."
+                    },
+                    {
+                        q: "When you type values manually there could be typo errors. What can be used to check these errors?",
+                        options: ["Spellcheck", "Automatic Spelling Check", "Data Validation", "None of the above"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Spellcheck helps identify and correct typos."
+                    },
+                    {
+                        q: "----- is functionality in Excel that allows a set of unique data in the target table to be searched or looked up in another source table vertically, and can also fetch certain specific information about the corresponding unique data.",
+                        options: ["VLOOKUP", "HLOOKUP", "Filter", "Sort"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "VLOOKUP searches for values in a vertical data range."
+                    },
+                    {
+                        q: "What is the extension used to save a Macro Workbook?",
+                        options: [".XIsm", ".XIs", ".mwb", ".excl"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Excel Macro-enabled workbooks are saved with .XIsm extension."
+                    },
+                    {
+                        q: "The ---- tab helps with document control features like spell check, thesaurus, track changes, and worksheet protection.",
+                        options: ["View", "Data", "Review", "Help"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "The Review tab contains these document control features."
+                    },
+                    {
+                        q: "The shortcut to undo an action is __--",
+                        options: ["CTRL +", "CTRL + B", "CTRL + I", "CTRL + Z"],
+                        correct: [3],
+                        multiple: false,
+                        explanation: "CTRL + Z is the standard shortcut for undoing an action."
+                    },
+                    {
+                        q: "Why does the client rely on you to relay information about their customers back to them?",
+                        options: ["Clients are very busy and so they need help", "You have the bandwidth to do additional work", "You are the one who interacts with customers"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "Since you interact with customers, you are the best source of information."
+                    },
+                    {
+                        q: "Customers are likely to take 'no' for an answer and still be loyal to a brand if they feel that they were treated fairly and with ----",
+                        options: ["Care", "Caution", "Respect"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "Respect ensures customer satisfaction even when refusing a request."
+                    },
+                    {
+                        q: "Empathy simply means that you make the customer feel that you understand them.",
+                        options: ["True", "False"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Empathy helps customers feel understood and valued."
+                    },
+                    {
+                        q: "Harvey received an email from a customer inquiring about some discount offers that she saw on the client’s website the previous week. Harvey investigated the inquiry and realized that the offers were not valid anymore. In his reply to the customer, along with all other relevant details, Harvey stated: 'Unfortunately, these offers are not valid anymore. I can understand that this must be disappointing for you.' Which customer expectation did Harvey deliver by including this line in his email?",
+                        options: ["Taking ownership", "Practicing empathy", "Upgrading knowledge"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "Harvey demonstrated empathy by acknowledging the customer's disappointment."
+                    },
+                    {
+                        q: "Client and Customer mean the same thing and the term can be used interchangeably.",
+                        options: ["True", "False"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "Clients and customers have different relationships with a business."
+                    },
+                    {
+                        q: "Which of the following are the 3 customer expectations?",
+                        options: ["Take ownership, Practice empathy, Provide accurate information", "Professionalism, Impression, Brand Value", "Good offers and discounts"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Customers expect ownership, empathy, and accurate information."
+                    },
+                    {
+                        q: "On every customer interaction, Ana ensures that she does her best to make the customer's experience effortless and pleasant. By doing this, which client expectation is Ana delivering successfully?",
+                        options: ["Deliver excellence to customers", "Bridge the gap between clients and customers", "None of the above"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Ana is ensuring excellence in customer service."
+                    },
+                    {
+                        q: "Why do you need to develop your domain and process knowledge skills?",
+                        options: ["To get promoted", "Because you like learning new things", "To deliver excellence to the customers"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "Knowledge enhancement ensures excellent customer service."
+                    },
+                    {
+                        q: "------ wants you to make their ------ experience of connecting with you effortless and pleasant.",
+                        options: ["Clients & customers", "Supervisors & clients", "Stakeholders & teams"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Both clients and customers expect an effortless experience."
+                    },
+                    {
+                        q: "Maggie works for a data process. She has excellent process knowledge, and she believes that this alone makes her a good brand ambassador for her client. Do you agree?",
+                        options: ["Yes", "No"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "Being a good brand ambassador requires more than just process knowledge."
                     }
                 ],
                 advanced: [
-                    { 
-                        q: "Which approaches are most effective for leading through organizational change?", 
-                        options: ["Clear communication about the vision and reasons for change", "Addressing resistance and concerns openly", "Involving team members in the change process", "Implementing changes without explanation to avoid confusion"], 
-                        correct: [0, 1, 2], 
-                        multiple: true,
-                        explanation: "Clear communication, addressing concerns, and involving team members are all effective approaches for leading through change. Implementing changes without explanation typically increases resistance."
-                    },
-                    { 
-                        q: "What is psychological safety in a team context?", 
-                        options: ["Freedom from physical hazards", "The belief that one won't be punished for making mistakes or speaking up", "Always agreeing with team members", "Avoiding difficult conversations"], 
-                        correct: [1], 
+                    {
+                        q: "What are the three dimensions of your role?",
+                        options: ["Infoscion, Client and End Customer", "Infoscion, Executive and Team Player", "Infoscion, Team Player and Client"],
+                        correct: [0],
                         multiple: false,
-                        explanation: "Psychological safety refers to the shared belief that the team is safe for interpersonal risk-taking, where members won't be punished for speaking up with ideas, questions, concerns, or mistakes."
+                        explanation: "Your role encompasses Infoscion, Client, and End Customer to ensure overall effectiveness."
                     },
-                    { 
-                        q: "Which factors contribute to building resilience?", 
-                        options: ["Avoiding challenges", "Developing a strong support network", "Learning from setbacks", "Maintaining perspective during difficulties"], 
-                        correct: [1, 2, 3], 
-                        multiple: true,
-                        explanation: "Having a support network, learning from setbacks, and maintaining perspective all contribute to resilience. Avoiding challenges prevents the development of resilience."
-                    },
-                    { 
-                        q: "What characterizes transformational leadership?", 
-                        options: ["Inspiring followers to exceed expected performance", "Creating positive change in followers", "Focusing solely on day-to-day operations", "Leading primarily through detailed directives"], 
-                        correct: [0, 1], 
-                        multiple: true,
-                        explanation: "Transformational leadership inspires followers to exceed expected performance and creates positive change in followers by aligning individual goals with organizational goals."
-                    },
-                    { 
-                        q: "Which approach is most effective for managing diverse teams?", 
-                        options: ["Treating everyone exactly the same regardless of background", "Understanding and valuing different perspectives", "Grouping team members with similar backgrounds together", "Avoiding discussion of differences"], 
-                        correct: [1], 
+                    {
+                        q: "Which of the following is your responsibility towards the end Customer?",
+                        options: ["To be punctual at work", "To deliver a seamless experience to them", "To uphold the image of their brand"],
+                        correct: [1],
                         multiple: false,
-                        explanation: "Understanding and valuing different perspectives is most effective for managing diverse teams, as it leverages the unique strengths and insights that diversity brings."
+                        explanation: "Your primary responsibility is to deliver a seamless experience to the end customer."
+                    },
+                    {
+                        q: "Why should you be empathetic towards your colleagues and step up to support them?",
+                        options: ["To get rewards and recognition", "To get promoted", "To demonstrate mutual respect & collaboration"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "Empathy fosters mutual respect and collaboration in the workplace."
+                    },
+                    {
+                        q: "Anna is the single point of contact to manage and track leave requests for her team. Anna is currently serving her notice period. What is expected of Anna at this stage?",
+                        options: ["She must continue with the responsibility until her manager assigns a new SPOC", "She can just give up the responsibility now"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Anna must continue handling the responsibility until her manager assigns a replacement."
+                    },
+                    {
+                        q: "What is the full form of BPM?",
+                        options: ["Business Process Management", "Business People Management", "Business Process Maintenance"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "BPM stands for Business Process Management."
+                    },
+                    {
+                        q: "Which of the following are examples of contracts in the BPM industry?",
+                        options: ["Offer Letter given to employees", "Master Services Agreement with clients", "Both of the above", "None of the above"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "Both offer letters and Master Services Agreements are considered contracts in BPM."
+                    },
+                    {
+                        q: "FTE, TBB, and T&M are 3 common types of methodologies in the BPM industry.",
+                        options: ["Contract", "Agreement", "Billing"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "These methodologies are related to billing in the BPM industry."
+                    },
+                    {
+                        q: "When _-___ are followed, errors are eliminated/reduced, and we can meet quality standards.",
+                        options: ["SOWs", "SOPs", "SLAs"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "Standard Operating Procedures (SOPs) help reduce errors and meet quality standards."
+                    },
+                    {
+                        q: "The video on Customer Expectations talks about two types of customers. Who are they?",
+                        options: ["Client and End Customer", "Happy and Unhappy Customer", "Potential and Existing Customer"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Clients and End Customers are the two primary types of customers discussed."
+                    },
+                    {
+                        q: "What do your clients expect from you?",
+                        options: ["Enhance their brand value", "Add value to their business", "Both of the above"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "Clients expect both brand enhancement and business value addition."
+                    },
+                    {
+                        q: "What can Ronald do at this stage to understand why he missed his goal?",
+                        options: ["He can do a 'Mind Mapping' exercise to identify what went wrong", "He can do a Brainstorming session with his manager to understand the cause of the miss", "He can use the '5 Why' technique to identify and frame the real problem that led to the miss"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "The '5 Why' technique helps identify and frame the real problem."
+                    },
+                    {
+                        q: "Once you have evaluated ideas and identified the best-suited solution, you can deploy it in _--- to check if it works, to reduce the risks associated with failure and wastage of time & effort.",
+                        options: ["An efficient way", "Controlled environment", "Collaboration with others", "A limited environment"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "A controlled environment minimizes risks during solution deployment."
+                    },
+                    {
+                        q: "We rely on your ------ skills to ensure that customers are given the best advice.",
+                        options: ["Customer service", "Critical thinking", "Problem-solving and decision-making"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "Problem-solving and decision-making skills help provide better customer advice."
+                    },
+                    {
+                        q: "To generate solutions effectively, you need to be-----",
+                        options: ["Challenge assumptions", "Be curious", "Be creative"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "Creativity is essential for generating effective solutions."
+                    },
+                    {
+                        q: "Mita has identified a work-related problem that she needs to solve effectively. What is the next step that Mita should take?",
+                        options: ["Generate effective solutions", "Analyze the problem", "Evaluate the best solution"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "After identifying a problem, the next step is to generate solutions."
+                    },
+                    {
+                        q: "Isabel wants to apply the problem-solving and decision-making framework but cannot identify any problems. What should she do?",
+                        options: ["Nothing, there are no problems", "Ask her team leader to give her some problems", "Ask a lot of good questions to identify problems"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "Asking the right questions helps uncover hidden problems."
+                    },
+                    {
+                        q: "Rob is struggling to generate ideas to solve a business problem. What advice will you give him?",
+                        options: ["Identify and challenge his assumptions", "If it's too complicated, just drop it", "Apply whatever ideas he does have and hope for the best"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Challenging assumptions helps generate better problem-solving ideas."
+                    },
+                    {
+                        q: "During which step of the problem-solving and decision-making framework do you use the 5 Why technique?",
+                        options: ["Generate solutions", "Identify & frame problems", "Evaluate and apply solutions", "Analyze problems"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "The 5 Why technique is used during problem identification and framing."
+                    },
+                    {
+                        q: "Which of the following is another name for a Fishbone diagram?",
+                        options: ["Ishikawa", "Kanban", "3M"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "The Fishbone diagram is also known as the Ishikawa diagram."
+                    },
+                    {
+                        q: "Joseph is trying to solve a complicated work-related problem. What techniques can he use to identify the reasons behind the problem?",
+                        options: ["Fishbone diagram", "Mind Map", "Effort-Impact matrix", "Pros & Cons Analysis"],
+                        correct: [0, 1],
+                        multiple: true,
+                        explanation: "Fishbone diagrams and Mind Maps help in identifying problem causes."
+                    },
+                    {
+                        q: "Kavita is working on a process improvement project. Which technique can she use to generate interesting ideas?",
+                        options: ["Effort-Impact matrix", "Brainstorming", "5 Whys"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "Brainstorming helps generate creative ideas for process improvement."
+                    },
+                    {
+                        q: "Jacob categorized one idea as a 'Quick Fix' using the Effort-Impact matrix. What should he do next?",
+                        options: ["Generate more ideas", "Apply the two ideas categorized as Major Projects", "Apply the one idea categorized as a 'Quick Fix'"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "Quick Fixes should be applied first as they require minimal effort and high impact."
                     }
                 ]
             },
+            // functional quetion and answers
             functional: {
                 beginner: [
-                    { 
-                        q: "What is quality assurance?", 
-                        options: ["Fixing problems after they occur", "Preventing problems before they occur", "Ignoring minor issues", "Accepting defects as inevitable"], 
-                        correct: [1], 
+                    {
+                        q: "Marital Status is an example of",
+                        options: ["Personal Data", "Sensitive Personal Data"],
+                        correct: [0],
                         multiple: false,
-                        explanation: "Quality assurance focuses on preventing problems and defects before they occur through planned and systematic activities."
+                        explanation: "Marital status falls under the category of personal data."
                     },
-                    { 
-                        q: "Which of the following are examples of efficiency in the workplace?", 
-                        options: ["Streamlining processes", "Eliminating unnecessary steps", "Working longer hours", "Effective resource allocation"], 
-                        correct: [0, 1, 3], 
-                        multiple: true,
-                        explanation: "Streamlining processes, eliminating unnecessary steps, and effective resource allocation are all examples of efficiency. Working longer hours doesn't necessarily improve efficiency."
-                    },
-                    { 
-                        q: "What is the purpose of a SWOT analysis?", 
-                        options: ["To identify Strengths, Weaknesses, Opportunities, and Threats", "To evaluate employee performance", "To set production quotas", "To calculate financial returns"], 
-                        correct: [0], 
+                    {
+                        q: "Which of these needs additional safeguards?",
+                        options: ["Personal Data", "Sensitive Personal Data"],
+                        correct: [1],
                         multiple: false,
-                        explanation: "A SWOT analysis is used to identify Strengths, Weaknesses, Opportunities, and Threats related to business competition or project planning."
+                        explanation: "Sensitive personal data requires additional safeguards due to its nature."
                     },
-                    { 
-                        q: "What does continuous improvement involve?", 
-                        options: ["Making changes only when problems arise", "Ongoing efforts to improve products, services, or processes", "Annual review of performance", "Major overhauls every few years"], 
-                        correct: [1], 
+                    {
+                        q: "------- is about providing ability to individuals to have control or knowledge, on what information about them is made known to others and how that information will be used and protected",
+                        options: ["Privacy", "Sensitive Personal Data", "Personal Data"],
+                        correct: [0],
                         multiple: false,
-                        explanation: "Continuous improvement involves ongoing efforts to improve products, services, or processes incrementally over time."
+                        explanation: "Privacy concerns an individual's control over their personal information."
                     },
-                    { 
-                        q: "Which of the following are key performance indicators (KPIs)?", 
-                        options: ["Revenue growth", "Customer satisfaction", "Employee retention", "Office location"], 
-                        correct: [0, 1, 2], 
-                        multiple: true,
-                        explanation: "Revenue growth, customer satisfaction, and employee retention are all examples of KPIs that can be measured to evaluate success. Office location is not typically a KPI."
+                    {
+                        q: "Infosys as a Data Controller has to ensure privacy of its employees, vendors, candidates, and sub-contractors",
+                        options: ["True", "False"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Infosys, as a Data Controller, is responsible for maintaining privacy of various stakeholders."
+                    },
+                    {
+                        q: "Data Processor is a person, public authority, agency or other body that alone or jointly with others determines the purpose and means of the processing of personal data",
+                        options: ["True", "False"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "A Data Controller determines the purpose and means of processing personal data, not a Data Processor."
                     }
                 ],
+                // above 7
                 intermediate: [
-                    { 
-                        q: "What is functional excellence?", 
-                        options: ["Quality management", "Operational efficiency", "Cost-cutting measures", "Innovation and improvement"], 
-                        correct: [0, 1, 3], 
-                        multiple: true,
-                        explanation: "Functional excellence encompasses quality management, operational efficiency, and innovation/improvement efforts. Cost-cutting alone doesn't necessarily lead to excellence."
-                    },
-                    { 
-                        q: "Which of these are characteristics of a well-designed process?", 
-                        options: ["Clear inputs and outputs", "Documented procedures", "Flexibility to adapt to changes", "No room for improvement"], 
-                        correct: [0, 1, 2], 
-                        multiple: true,
-                        explanation: "Well-designed processes have clear inputs/outputs, documented procedures, and flexibility to adapt. The idea that there's no room for improvement contradicts the concept of continuous improvement."
-                    },
-                    { 
-                        q: "What is the primary goal of operational efficiency?", 
-                        options: ["To maximize output while minimizing input", "To reduce all costs regardless of impact", "To eliminate all human involvement", "To standardize everything"], 
-                        correct: [0], 
+                    {
+                        q: "Transfer of personal data to another country or jurisdiction is considered as.",
+                        options: ["Cross Border Data Transfer", "Cross Country Processing"],
+                        correct: [0],
                         multiple: false,
-                        explanation: "Operational efficiency aims to maximize output while minimizing input (resources, time, costs), not necessarily to eliminate all costs or human involvement."
+                        explanation: "Transferring personal data to another country is known as Cross Border Data Transfer."
                     },
-                    { 
-                        q: "Which techniques are used for problem-solving in functional excellence?", 
-                        options: ["Root cause analysis", "Brainstorming", "Ignoring small problems", "The 5 Whys technique"], 
-                        correct: [0, 1, 3], 
+                    {
+                        q: "Which of these is Data Subject? Select all that apply",
+                        options: ["Employees", "Visitors", "Customers", "Candidates"],
+                        correct: [0, 1, 2, 3],
                         multiple: true,
-                        explanation: "Root cause analysis, brainstorming, and the 5 Whys technique are all valid problem-solving approaches. Ignoring small problems is not an effective strategy."
+                        explanation: "Employees, Visitors, Customers, and Candidates are all considered Data Subjects."
                     },
-                    { 
-                        q: "What is the purpose of standardization in functional processes?", 
-                        options: ["To eliminate all variation", "To ensure consistency and reliability", "To make processes inflexible", "To reduce the need for training"], 
-                        correct: [1], 
+                    {
+                        q: "Transferring client personal data to a vendor, outside approved jurisdiction without ensuring contractual data protection safeguards and without Client consent. Is this a violation of Cross Border Data Transfer?",
+                        options: ["Yes", "No"],
+                        correct: [0],
                         multiple: false,
-                        explanation: "Standardization aims to ensure consistency and reliability in processes, not to eliminate all variation or make processes inflexible."
+                        explanation: "Yes, transferring client personal data without safeguards and consent is a violation."
+                    },
+                    {
+                        q: "If you notice any data breach, you need to ___--_.",
+                        options: ["Immediately log an incident using AHD with Data Privacy Office", "No need to report as it is not known to anyone else", "Investigate if it is a valid breach and then report to Data Privacy Office", "None of these"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Any data breach should be immediately logged using AHD with the Data Privacy Office."
+                    },
+                    {
+                        q: "Who is the founder of Infosys Ltd?",
+                        options: ["Narayana Murthy", "S.D. Shibulal", "Nandan Nilkeni", "S. Gopalakrishnan"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Narayana Murthy is the founder of Infosys Ltd."
+                    },
+                    {
+                        q: "When was IBPM founded?",
+                        options: ["2017", "2006", "2004", "2002"],
+                        correct: [3],
+                        multiple: false,
+                        explanation: "IBPM was founded in the year 2002."
+                    },
+                    {
+                        q: "What was the original name of IBPM?",
+                        options: ["Progeon", "Philips", "Portland"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "The original name of IBPM was Progeon."
+                    },
+                    {
+                        q: "What does A and B stand in the job levels?",
+                        options: ["Advanced and Beginner", "Ahead and Basic", "Ahead and Beginner", "Advanced and Basic"],
+                        correct: [3],
+                        multiple: false,
+                        explanation: "A and B in job levels stand for Advanced and Basic."
+                    },
+                    {
+                        q: "What is the full form of P and P?",
+                        options: ["Promotion and Process", "Promotion and Progression", "Progress and Promotion", "Progression and Promotion"],
+                        correct: [3],
+                        multiple: false,
+                        explanation: "The full form of P and P is Progression and Promotion."
+                    },
+                    {
+                        q: "What Values are followed in IBPM?",
+                        options: ["ILMS", "SAQ", "ASHI", "CLIFE"],
+                        correct: [3],
+                        multiple: false,
+                        explanation: "The values followed in IBPM are represented by CLIFE."
                     }
                 ],
+                // 18
                 advanced: [
-                    { 
-                        q: "What is the relationship between innovation and functional excellence?", 
-                        options: ["Innovation disrupts functional excellence", "Functional excellence enables sustainable innovation", "They are completely separate concepts", "Innovation should only happen outside functional processes"], 
-                        correct: [1], 
+                    {
+                        q: "What is 'Domain' otherwise known as?",
+                        options: ["Clients Name", "Process Name", "Services offered", "Job Levels"],
+                        correct: [2],
                         multiple: false,
-                        explanation: "Functional excellence provides the foundation that enables sustainable innovation by creating efficient, reliable processes that can support new ideas."
+                        explanation: "'Domain' refers to services offered."
                     },
-                    { 
-                        q: "Which metrics would you use to measure functional excellence in a service organization?", 
-                        options: ["Customer satisfaction scores", "Process cycle times", "Employee engagement levels", "First-time resolution rates"], 
-                        correct: [0, 1, 3], 
-                        multiple: true,
-                        explanation: "Customer satisfaction, process cycle times, and first-time resolution rates are all direct measures of functional excellence in service. Employee engagement is important but more of an input than an output metric."
-                    },
-                    { 
-                        q: "How does functional excellence contribute to competitive advantage?", 
-                        options: ["By reducing costs through efficiency", "By improving quality and reliability", "By enabling faster response to market changes", "By eliminating all competition"], 
-                        correct: [0, 1, 2], 
-                        multiple: true,
-                        explanation: "Functional excellence contributes to competitive advantage through cost reduction, quality improvement, and increased agility. It doesn't eliminate competition."
-                    },
-                    { 
-                        q: "What is the role of technology in functional excellence?", 
-                        options: ["To automate all human tasks", "To enable better data-driven decisions", "To support continuous improvement", "To replace all existing processes"], 
-                        correct: [1, 2], 
-                        multiple: true,
-                        explanation: "Technology supports functional excellence by enabling better decisions through data and facilitating continuous improvement, not necessarily by replacing all humans or processes."
-                    },
-                    { 
-                        q: "Which principle is most important for sustaining functional excellence?", 
-                        options: ["Continuous improvement", "Strict adherence to initial standards", "Frequent organizational restructuring", "Eliminating all variation"], 
-                        correct: [0], 
+                    {
+                        q: "What does C stand in CLIFE?",
+                        options: ["Client Relationship", "Clients Value", "Customer Value", "Customer Service"],
+                        correct: [1],
                         multiple: false,
-                        explanation: "Continuous improvement is the most important principle for sustaining functional excellence over time, as it allows for adaptation and refinement."
+                        explanation: "C in CLIFE stands for Clients Value."
+                    },
+                    {
+                        q: "What is the full form of ILMS?",
+                        options: ["Infrastructure Legal Management Services", "Information Loss Monitoring System", "Information Legal Management Services", "Insurance for Life Medical Services"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "ILMS stands for Information Loss Monitoring System."
+                    },
+                    {
+                        q: "Where is the headquarters of IBPM?",
+                        options: ["Hyderabad", "Pune", "Bangalore", "Delhi"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "IBPM's headquarters is in Bangalore."
+                    },
+                    {
+                        q: "What is the full form of PPM?",
+                        options: ["Process Promotion Model", "Progression Promotion Manual", "Process Progression Model", "Project Promotion Management"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "PPM stands for Process Progression Model."
+                    },
+                    {
+                        q: "How many stages are there in PPM?",
+                        options: ["6", "5", "4", "3"],
+                        correct: [3],
+                        multiple: false,
+                        explanation: "PPM consists of 3 stages."
+                    },
+                    {
+                        q: "What are the stages in PPM called?",
+                        options: ["P1", "P2", "P3"],
+                        correct: [0, 1, 2],
+                        multiple: true,
+                        explanation: "The three stages in PPM are P1: Process, P2: Business, and P3: Noiseless."
+                    },
+                    {
+                        q: "What is the duration of each stage: P1, P2, P3?",
+                        options: ["P1: 0-6 Months, P2: 0-12 Months, P3: 0-24 Months"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "Each stage has a specific duration: P1 (0-6 months), P2 (0-12 months), and P3 (0-24 months)."
+                    },
+                    {
+                        q: "What is the business value in the P2 stage?",
+                        options: ["1.5X-1.8X", "1.3X-1.6X", "1.2X-1.4X", "1.4X-1.6X"],
+                        correct: [1],
+                        multiple: false,
+                        explanation: "The business value in the P2 stage is 1.3X-1.6X."
+                    },
+                    {
+                        q: "What is the outcome of PPM?",
+                        options: ["Optimize Operate Transform", "Optimize Operate Transaction", "Operate Optimize Transform", "Operate Optimize Transaction"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "The outcome of PPM is Optimize Operate Transform."
+                    },
+                    {
+                        q: "What are levers?",
+                        options: ["Instruments", "Techniques", "Methods", "Tools"],
+                        correct: [3],
+                        multiple: false,
+                        explanation: "Levers refer to tools used in process improvement."
+                    },
+                    {
+                        q: "What is the full form of ADE?",
+                        options: ["Analyse Define Empower", "Analyse Define Establish", "Assess Define Establish"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "ADE stands for Analyse Define Empower."
+                    },
+                    {
+                        q: "What is the full form of OOT?",
+                        options: ["Optimize Operate Transform", "Optimize Operate Transaction", "Operate Optimize Transform", "Operate Optimize Transaction"],
+                        correct: [0],
+                        multiple: false,
+                        explanation: "OOT stands for Optimize Operate Transform."
+                    },
+                    {
+                        q: "What are the colors used to indicate the status of a 'Track'?",
+                        options: ["Green Amber Yellow", "Green Amber Blue", "Green Amber Partial Blue", "Green Orange Partial Blue"],
+                        correct: [2],
+                        multiple: false,
+                        explanation: "Green, Amber, and Partial Blue indicate the status of a 'Track'."
                     }
                 ]
             }
+
         };
 
         // Global variables
@@ -884,7 +968,7 @@
             submitButton.addEventListener('click', submitAssessment);
             restartButton.addEventListener('click', restartAssessment);
             certificateButton.addEventListener('click', showCertificate);
-            
+
             // Close certificate modal
             document.getElementById('certificate-close').addEventListener('click', () => {
                 document.getElementById('certificate-container').style.display = 'none';
@@ -910,17 +994,17 @@
             currentQuestions = questionsDatabase[category][currentDifficulty];
             currentQuestionIndex = 0;
             userAnswers = {};
-            
+
             // Reset and start timer
             resetTimer();
             startTimer();
-            
+
             // Show question section and hide category section
             categorySection.style.display = 'none';
             questionSection.style.display = 'block';
             progressContainer.style.display = 'block';
             timerElement.style.display = 'block';
-            
+
             // Load first question
             loadQuestion(currentQuestionIndex);
             updateProgressBar();
@@ -929,9 +1013,9 @@
         // Load a specific question
         function loadQuestion(index) {
             if (!currentQuestions || index < 0 || index >= currentQuestions.length) return;
-            
+
             const question = currentQuestions[index];
-            
+
             // Create question header
             let questionHTML = `
                 <div class="question-header">
@@ -941,7 +1025,7 @@
                 <div class="question-text">${question.q}</div>
                 <div class="options-container">
             `;
-            
+
             // Add options
             if (question.multiple) {
                 question.options.forEach((option, i) => {
@@ -964,18 +1048,18 @@
                     `;
                 });
             }
-            
+
             questionHTML += '</div>';
-            
+
             // Update question content
             currentQuestionElement.innerHTML = questionHTML;
-            
+
             // Add event listeners to options
             const optionItems = currentQuestionElement.querySelectorAll('.option-item');
             optionItems.forEach(item => {
                 item.addEventListener('click', () => selectOption(item, index));
             });
-            
+
             // Update navigation buttons
             updateNavigationButtons();
         }
@@ -985,13 +1069,13 @@
             const optionIndex = parseInt(optionElement.dataset.index);
             const question = currentQuestions[questionIndex];
             const inputElement = optionElement.querySelector('input');
-            
+
             if (question.multiple) {
                 // For checkboxes (multiple selection)
                 if (!userAnswers[questionIndex]) {
                     userAnswers[questionIndex] = [];
                 }
-                
+
                 if (inputElement.checked) {
                     // Uncheck if already checked
                     inputElement.checked = false;
@@ -1010,12 +1094,12 @@
                     opt.classList.remove('selected');
                     opt.querySelector('input').checked = false;
                 });
-                
+
                 inputElement.checked = true;
                 optionElement.classList.add('selected');
                 userAnswers[questionIndex] = [optionIndex];
             }
-            
+
             // Update navigation buttons
             updateNavigationButtons();
         }
@@ -1041,10 +1125,10 @@
         // Update navigation buttons based on current question
         function updateNavigationButtons() {
             if (!currentQuestions || currentQuestions.length === 0) return;
-            
+
             // Previous button
             prevButton.classList.toggle('btn-disabled', currentQuestionIndex === 0);
-            
+
             // Next and Submit buttons
             const isLastQuestion = currentQuestionIndex === currentQuestions.length - 1;
             nextButton.style.display = isLastQuestion ? 'none' : 'inline-block';
@@ -1100,7 +1184,7 @@
         function submitAssessment() {
             // Stop timer
             clearInterval(timerInterval);
-            
+
             // Calculate score
             let correctAnswers = 0;
             currentQuestions.forEach((question, index) => {
@@ -1108,17 +1192,17 @@
                     correctAnswers++;
                 }
             });
-            
+
             const scorePercentage = Math.round((correctAnswers / currentQuestions.length) * 100);
-            
+
             // Update results elements
             document.getElementById('score-percentage').textContent = `${scorePercentage}%`;
             document.getElementById('correct-answers').textContent = correctAnswers;
             document.getElementById('total-questions').textContent = currentQuestions.length;
-            
+
             // Generate feedback
             generateFeedback();
-            
+
             // Show results section
             questionSection.style.display = 'none';
             resultsSection.style.display = 'block';
@@ -1130,23 +1214,23 @@
         function isAnswerCorrect(questionIndex) {
             const question = currentQuestions[questionIndex];
             const userAnswer = userAnswers[questionIndex] || [];
-            
+
             // For correct answer, arrays must be same length and contain same elements
             if (userAnswer.length !== question.correct.length) {
                 return false;
             }
-            
+
             // Sort both arrays for comparison
             const sortedUserAnswer = [...userAnswer].sort((a, b) => a - b);
             const sortedCorrect = [...question.correct].sort((a, b) => a - b);
-            
+
             // Compare each element
             for (let i = 0; i < sortedUserAnswer.length; i++) {
                 if (sortedUserAnswer[i] !== sortedCorrect[i]) {
                     return false;
                 }
             }
-            
+
             return true;
         }
 
@@ -1154,11 +1238,11 @@
         function generateFeedback() {
             const feedbackSection = document.getElementById('feedback-section');
             feedbackSection.innerHTML = '';
-            
+
             currentQuestions.forEach((question, index) => {
                 const isCorrect = isAnswerCorrect(index);
                 const userAnswer = userAnswers[index] || [];
-                
+
                 let feedbackHTML = `
                     <div class="feedback-item">
                         <div class="feedback-question">
@@ -1170,14 +1254,14 @@
                         <div class="feedback-answer">
                             <strong>Your answer:</strong> 
                 `;
-                
+
                 if (userAnswer.length === 0) {
                     feedbackHTML += 'No answer provided';
                 } else {
                     const selectedOptions = userAnswer.map(i => question.options[i]).join(', ');
                     feedbackHTML += selectedOptions;
                 }
-                
+
                 feedbackHTML += `
                         </div>
                         <div class="feedback-answer">
@@ -1189,7 +1273,7 @@
                         </div>
                     </div>
                 `;
-                
+
                 feedbackSection.innerHTML += feedbackHTML;
             });
         }
@@ -1210,19 +1294,19 @@
                     correctAnswers++;
                 }
             });
-            
+
             const scorePercentage = Math.round((correctAnswers / currentQuestions.length) * 100);
-            
+
             // Update certificate details
             document.getElementById('certificate-name').textContent = 'Learner';
             document.getElementById('certificate-category').textContent = getCategoryDisplayName(currentCategory) + ' - ' + capitalizeFirstLetter(currentDifficulty);
             document.getElementById('certificate-score').textContent = `${scorePercentage}%`;
-            
+
             // Get and format current date
             const today = new Date();
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('certificate-date').textContent = today.toLocaleDateString('en-US', options);
-            
+
             // Show certificate
             document.getElementById('certificate-container').style.display = 'flex';
         }
@@ -1243,4 +1327,5 @@
         }
     </script>
 </body>
+
 </html>
