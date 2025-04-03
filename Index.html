@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Assessment</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .category-btn { margin: 10px; padding: 10px; cursor: pointer; }
+        .question-container { display: none; }
+        .submit-btn { display: none; margin-top: 20px; padding: 10px; }
+        .popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                 background: white; padding: 20px; border: 1px solid black; }
+    </style>
+</head>
+<body>
+    <h2>Select a Category</h2>
+    <button class="category-btn" onclick="loadQuestions('communication')">Communication Excellence</button>
+    <button class="category-btn" onclick="loadQuestions('behavioral')">Behavioral Excellence</button>
+    <button class="category-btn" onclick="loadQuestions('functional')">Functional Excellence</button>
+    
+    <div class="question-container" id="question-container"></div>
+    <button class="submit-btn" id="submit-btn" onclick="submitAnswers()">Submit</button>
+    
+    <div class="popup" id="popup">
+        <h3>Assessment Result</h3>
+        <p id="result"></p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+    
+    <script>
+        const questions = {
+            communication: [
+                { q: "What is active listening?", options: ["Ignoring", "Focusing", "Interrupting", "Understanding"], correct: [1, 3], multiple: true },
+                { q: "Best way to handle conflict?", options: ["Avoiding", "Communicating", "Arguing", "Ignoring"], correct: [1], multiple: false }
+            ],
+            behavioral: [
+                { q: "Key to teamwork?", options: ["Leadership", "Listening", "Competing", "Collaboration"], correct: [1, 3], multiple: true }
+            ],
+            functional: [
+                { q: "What is functional excellence?", options: ["Quality", "Efficiency", "Inaccuracy", "Innovation"], correct: [0, 1, 3], multiple: true }
+            ]
+        };
+
+        let selectedCategory = '';
+        let userAnswers = {};
+
+        function loadQuestions(category) {
+            selectedCategory = category;
+            document.getElementById("question-container").innerHTML = "";
+            userAnswers = {}; // Reset previous answers
+
+            questions[category].forEach((item, index) => {
+                let div = document.createElement("div");
+                div.innerHTML = `<p>${item.q}</p>`;
+                if (item.multiple) {
+                    item.options.forEach((option, i) => {
+                        div.innerHTML += `<input type='checkbox' name='q${index}' value='${i}' onchange='handleSelection(${index}, true)'> ${option}<br>`;
+                    });
+                } else {
+                    item.options.forEach((option, i) => {
+                        div.innerHTML += `<input type='radio' name='q${index}' value='${i}' onchange='handleSelection(${index}, false)'> ${option}<br>`;
+                    });
+                }
+                document.getElementById("question-container").appendChild(div);
+            });
+
+            document.getElementById("question-container").style.display = "block";
+            document.getElementById("submit-btn").style.display = "none";
+        }
+
+        function handleSelection(index, isMultiple) {
+            if (isMultiple) {
+                let checkboxes = document.getElementsByName(`q${index}`);
+                userAnswers[index] = Array.from(checkboxes).filter(cb => cb.checked).map(cb => Number(cb.value));
+            } else {
+                let radioButtons = document.getElementsByName(`q${index}`);
+                userAnswers[index] = [Number(Array.from(radioButtons).find(rb => rb.checked)?.value)];
+            }
+            let allAnswered = Object.keys(userAnswers).length === questions[selectedCategory].length;
+            document.getElementById("submit-btn").style.display = allAnswered ? "block" : "none";
+        }
+
+        function submitAnswers() {
+            let score = 0;
+            questions[selectedCategory].forEach((item, index) => {
+                if (JSON.stringify(userAnswers[index]) === JSON.stringify(item.correct)) {
+                    score++;
+                }
+            });
+
+            document.getElementById("result").innerText = `Your score: ${score} / ${questions[selectedCategory].length}`;
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
+</body>
+</html>
