@@ -578,7 +578,7 @@
                     { 
                         q: "In a negotiation scenario, which factors contribute to a successful outcome?", 
                         options: ["Understanding the interests of all parties", "Preparing alternative options", "Effective listening skills", "Willingness to compromise"], 
-                        correct: [0, 1,, 2, 3], 
+                        correct: [0, 1, 2, 3], 
                         multiple: true,
                         explanation: "All of these factors contribute to successful negotiations, as they help create a balanced discussion that addresses everyone's needs."
                     },
@@ -764,459 +764,483 @@
                         multiple: true,
                         explanation: "Functional excellence encompasses quality management, operational efficiency, and innovation/improvement efforts. Cost-cutting alone doesn't necessarily lead to excellence."
                     },
-                    
-advanced: [
                     { 
-                        q: "Which approaches are most effective for leading through organizational change?", 
-                        options: ["Clear communication about the vision and reasons for change", "Addressing resistance and concerns openly", "Involving team members in the change process", "Implementing changes without explanation to avoid confusion"], 
+                        q: "Which of these are characteristics of a well-designed process?", 
+                        options: ["Clear inputs and outputs", "Documented procedures", "Flexibility to adapt to changes", "No room for improvement"], 
                         correct: [0, 1, 2], 
                         multiple: true,
-                        explanation: "Clear communication, addressing concerns, and involving team members are all effective approaches for leading through change. Implementing changes without explanation typically increases resistance."
+                        explanation: "Well-designed processes have clear inputs/outputs, documented procedures, and flexibility to adapt. The idea that there's no room for improvement contradicts the concept of continuous improvement."
                     },
                     { 
-                        q: "What is psychological safety in a team context?", 
-                        options: ["Freedom from physical hazards", "The belief that one won't be punished for making mistakes or speaking up", "Always agreeing with team members", "Avoiding difficult conversations"], 
+                        q: "What is the primary goal of operational efficiency?", 
+                        options: ["To maximize output while minimizing input", "To reduce all costs regardless of impact", "To eliminate all human involvement", "To standardize everything"], 
+                        correct: [0], 
+                        multiple: false,
+                        explanation: "Operational efficiency aims to maximize output while minimizing input (resources, time, costs), not necessarily to eliminate all costs or human involvement."
+                    },
+                    { 
+                        q: "Which techniques are used for problem-solving in functional excellence?", 
+                        options: ["Root cause analysis", "Brainstorming", "Ignoring small problems", "The 5 Whys technique"], 
+                        correct: [0, 1, 3], 
+                        multiple: true,
+                        explanation: "Root cause analysis, brainstorming, and the 5 Whys technique are all valid problem-solving approaches. Ignoring small problems is not an effective strategy."
+                    },
+                    { 
+                        q: "What is the purpose of standardization in functional processes?", 
+                        options: ["To eliminate all variation", "To ensure consistency and reliability", "To make processes inflexible", "To reduce the need for training"], 
                         correct: [1], 
                         multiple: false,
-                        explanation: "Psychological safety refers to the shared belief that the team is safe for interpersonal risk-taking, where members won't be punished for speaking up with ideas, questions, concerns, or mistakes."
-                    },
-                    { 
-                        q: "Which factors contribute to building resilience?", 
-                        options: ["Avoiding challenges", "Developing a strong support network", "Learning from setbacks", "Maintaining perspective during difficulties"], 
-                        correct: [1, 2, 3], 
-                        multiple: true,
-                        explanation: "Having a support network, learning from setbacks, and maintaining perspective all contribute to resilience. Avoiding challenges prevents the development of resilience."
-                    },
-                    { 
-                        q: "What characterizes transformational leadership?", 
-                        options: ["Inspiring followers to exceed expected performance", "Creating positive change in followers", "Focusing solely on day-to-day operations", "Leading primarily through detailed directives"], 
-                        correct: [0, 1], 
-                        multiple: true,
-                        explanation: "Transformational leadership inspires followers to exceed expected performance and creates positive change in followers by aligning individual goals with organizational goals."
-                    },
-                    { 
-                        q: "Which approach is most effective for managing diverse teams?", 
-                        options: ["Treating everyone exactly the same regardless of background", "Understanding and valuing different perspectives", "Grouping team members with similar backgrounds together", "Avoiding discussion of differences"], 
-                        correct: [1], 
-                        multiple: false,
-                        explanation: "Understanding and valuing different perspectives is most effective for managing diverse teams, as it leverages the unique strengths and insights that diversity brings."
+                        explanation: "Standardization aims to ensure consistency and reliability in processes, not to eliminate all variation or make processes inflexible."
                     }
-                    ], 
-};
+                ],
+                advanced: [
+                    { 
+                        q: "What is the relationship between innovation and functional excellence?", 
+                        options: ["Innovation disrupts functional excellence", "Functional excellence enables sustainable innovation", "They are completely separate concepts", "Innovation should only happen outside functional processes"], 
+                        correct: [1], 
+                        multiple: false,
+                        explanation: "Functional excellence provides the foundation that enables sustainable innovation by creating efficient, reliable processes that can support new ideas."
+                    },
+                    { 
+                        q: "Which metrics would you use to measure functional excellence in a service organization?", 
+                        options: ["Customer satisfaction scores", "Process cycle times", "Employee engagement levels", "First-time resolution rates"], 
+                        correct: [0, 1, 3], 
+                        multiple: true,
+                        explanation: "Customer satisfaction, process cycle times, and first-time resolution rates are all direct measures of functional excellence in service. Employee engagement is important but more of an input than an output metric."
+                    },
+                    { 
+                        q: "How does functional excellence contribute to competitive advantage?", 
+                        options: ["By reducing costs through efficiency", "By improving quality and reliability", "By enabling faster response to market changes", "By eliminating all competition"], 
+                        correct: [0, 1, 2], 
+                        multiple: true,
+                        explanation: "Functional excellence contributes to competitive advantage through cost reduction, quality improvement, and increased agility. It doesn't eliminate competition."
+                    },
+                    { 
+                        q: "What is the role of technology in functional excellence?", 
+                        options: ["To automate all human tasks", "To enable better data-driven decisions", "To support continuous improvement", "To replace all existing processes"], 
+                        correct: [1, 2], 
+                        multiple: true,
+                        explanation: "Technology supports functional excellence by enabling better decisions through data and facilitating continuous improvement, not necessarily by replacing all humans or processes."
+                    },
+                    { 
+                        q: "Which principle is most important for sustaining functional excellence?", 
+                        options: ["Continuous improvement", "Strict adherence to initial standards", "Frequent organizational restructuring", "Eliminating all variation"], 
+                        correct: [0], 
+                        multiple: false,
+                        explanation: "Continuous improvement is the most important principle for sustaining functional excellence over time, as it allows for adaptation and refinement."
+                    }
+                ]
+            }
+        };
 
-// Global variables
-let currentCategory = '';
-let currentDifficulty = 'intermediate';
-let currentQuestions = [];
-let currentQuestionIndex = 0;
-let userAnswers = {};
-let timerInterval;
-let seconds = 0;
-let minutes = 0;
+        // Global variables
+        let currentCategory = '';
+        let currentDifficulty = 'intermediate';
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = {};
+        let timerInterval;
+        let seconds = 0;
+        let minutes = 0;
 
-// DOM Elements
-const categorySection = document.getElementById('category-section');
-const questionSection = document.getElementById('question-section');
-const resultsSection = document.getElementById('results-section');
-const currentQuestionElement = document.getElementById('current-question');
-const progressContainer = document.getElementById('progress-container');
-const progressBar = document.getElementById('progress-bar');
-const prevButton = document.getElementById('prev-btn');
-const nextButton = document.getElementById('next-btn');
-const submitButton = document.getElementById('submit-btn');
-const timerElement = document.getElementById('timer');
-const restartButton = document.getElementById('restart-btn');
-const certificateButton = document.getElementById('certificate-btn');
+        // DOM Elements
+        const categorySection = document.getElementById('category-section');
+        const questionSection = document.getElementById('question-section');
+        const resultsSection = document.getElementById('results-section');
+        const currentQuestionElement = document.getElementById('current-question');
+        const progressContainer = document.getElementById('progress-container');
+        const progressBar = document.getElementById('progress-bar');
+        const prevButton = document.getElementById('prev-btn');
+        const nextButton = document.getElementById('next-btn');
+        const submitButton = document.getElementById('submit-btn');
+        const timerElement = document.getElementById('timer');
+        const restartButton = document.getElementById('restart-btn');
+        const certificateButton = document.getElementById('certificate-btn');
 
-// Initialize the application
-document.addEventListener('DOMContentLoaded', () => {
-    // Set up difficulty selector
-    const difficultyButtons = document.querySelectorAll('.difficulty-btn');
-    difficultyButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            difficultyButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            currentDifficulty = button.dataset.difficulty;
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set up difficulty selector
+            const difficultyButtons = document.querySelectorAll('.difficulty-btn');
+            difficultyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    difficultyButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    currentDifficulty = button.dataset.difficulty;
+                    updateQuestionCounts();
+                });
+            });
+
+            // Set up category cards
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    startAssessment(card.dataset.category);
+                });
+            });
+
+            // Set up navigation buttons
+            prevButton.addEventListener('click', goToPreviousQuestion);
+            nextButton.addEventListener('click', goToNextQuestion);
+            submitButton.addEventListener('click', submitAssessment);
+            restartButton.addEventListener('click', restartAssessment);
+            certificateButton.addEventListener('click', showCertificate);
+            
+            // Close certificate modal
+            document.getElementById('certificate-close').addEventListener('click', () => {
+                document.getElementById('certificate-container').style.display = 'none';
+            });
+
+            // Initialize question counts
             updateQuestionCounts();
         });
-    });
 
-    // Set up category cards
-    const categoryCards = document.querySelectorAll('.category-card');
-    categoryCards.forEach(card => {
-        card.addEventListener('click', () => {
-            startAssessment(card.dataset.category);
-        });
-    });
+        // Update question counts based on selected difficulty
+        function updateQuestionCounts() {
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                const category = card.dataset.category;
+                const questionsCount = questionsDatabase[category][currentDifficulty].length;
+                card.querySelector('.questions-count').textContent = `${questionsCount} questions`;
+            });
+        }
 
-    // Set up navigation buttons
-    prevButton.addEventListener('click', goToPreviousQuestion);
-    nextButton.addEventListener('click', goToNextQuestion);
-    submitButton.addEventListener('click', submitAssessment);
-    restartButton.addEventListener('click', restartAssessment);
-    certificateButton.addEventListener('click', showCertificate);
-    
-    // Close certificate modal
-    document.getElementById('certificate-close').addEventListener('click', () => {
-        document.getElementById('certificate-container').style.display = 'none';
-    });
+        // Start the assessment
+        function startAssessment(category) {
+            currentCategory = category;
+            currentQuestions = questionsDatabase[category][currentDifficulty];
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            
+            // Reset and start timer
+            resetTimer();
+            startTimer();
+            
+            // Show question section and hide category section
+            categorySection.style.display = 'none';
+            questionSection.style.display = 'block';
+            progressContainer.style.display = 'block';
+            timerElement.style.display = 'block';
+            
+            // Load first question
+            loadQuestion(currentQuestionIndex);
+            updateProgressBar();
+        }
 
-    // Initialize question counts
-    updateQuestionCounts();
-});
-
-// Update question counts based on selected difficulty
-function updateQuestionCounts() {
-    const categoryCards = document.querySelectorAll('.category-card');
-    categoryCards.forEach(card => {
-        const category = card.dataset.category;
-        const questionsCount = questionsDatabase[category][currentDifficulty].length;
-        card.querySelector('.questions-count').textContent = `${questionsCount} questions`;
-    });
-}
-
-// Start the assessment
-function startAssessment(category) {
-    currentCategory = category;
-    currentQuestions = questionsDatabase[category][currentDifficulty];
-    currentQuestionIndex = 0;
-    userAnswers = {};
-    
-    // Reset and start timer
-    resetTimer();
-    startTimer();
-    
-    // Show question section and hide category section
-    categorySection.style.display = 'none';
-    questionSection.style.display = 'block';
-    progressContainer.style.display = 'block';
-    timerElement.style.display = 'block';
-    
-    // Load first question
-    loadQuestion(currentQuestionIndex);
-    updateProgressBar();
-}
-
-// Load a specific question
-function loadQuestion(index) {
-    const question = currentQuestions[index];
-    
-    // Create question header
-    let questionHTML = `
-        <div class="question-header">
-            <div class="question-number">Question ${index + 1} of ${currentQuestions.length}</div>
-            <div class="question-type">${question.multiple ? 'Multiple Select' : 'Single Select'}</div>
-        </div>
-        <div class="question-text">${question.q}</div>
-        <div class="options-container">
-    `;
-    
-    // Add options
-    if (question.multiple) {
-        question.options.forEach((option, i) => {
-            const isSelected = userAnswers[index] && userAnswers[index].includes(i);
-            questionHTML += `
-                <div class="option-item ${isSelected ? 'selected' : ''}" data-index="${i}">
-                    <input type="checkbox" id="option${i}" name="q${index}" value="${i}" ${isSelected ? 'checked' : ''}>
-                    <label for="option${i}">${option}</label>
+        // Load a specific question
+        function loadQuestion(index) {
+            if (!currentQuestions || index < 0 || index >= currentQuestions.length) return;
+            
+            const question = currentQuestions[index];
+            
+            // Create question header
+            let questionHTML = `
+                <div class="question-header">
+                    <div class="question-number">Question ${index + 1} of ${currentQuestions.length}</div>
+                    <div class="question-type">${question.multiple ? 'Multiple Select' : 'Single Select'}</div>
                 </div>
+                <div class="question-text">${question.q}</div>
+                <div class="options-container">
             `;
-        });
-    } else {
-        question.options.forEach((option, i) => {
-            const isSelected = userAnswers[index] && userAnswers[index][0] === i;
-            questionHTML += `
-                <div class="option-item ${isSelected ? 'selected' : ''}" data-index="${i}">
-                    <input type="radio" id="option${i}" name="q${index}" value="${i}" ${isSelected ? 'checked' : ''}>
-                    <label for="option${i}">${option}</label>
-                </div>
-            `;
-        });
-    }
-    
-    questionHTML += '</div>';
-    
-    // Update question content
-    currentQuestionElement.innerHTML = questionHTML;
-    
-    // Add event listeners to options
-    const optionItems = currentQuestionElement.querySelectorAll('.option-item');
-    optionItems.forEach(item => {
-        item.addEventListener('click', () => selectOption(item, index));
-    });
-    
-    // Update navigation buttons
-    updateNavigationButtons();
-}
-
-// Handle option selection
-function selectOption(optionElement, questionIndex) {
-    const optionIndex = parseInt(optionElement.dataset.index);
-    const question = currentQuestions[questionIndex];
-    const inputElement = optionElement.querySelector('input');
-    
-    if (question.multiple) {
-        // For checkboxes (multiple selection)
-        if (!userAnswers[questionIndex]) {
-            userAnswers[questionIndex] = [];
+            
+            // Add options
+            if (question.multiple) {
+                question.options.forEach((option, i) => {
+                    const isSelected = userAnswers[index] && userAnswers[index].includes(i);
+                    questionHTML += `
+                        <div class="option-item ${isSelected ? 'selected' : ''}" data-index="${i}">
+                            <input type="checkbox" id="option${i}" name="q${index}" value="${i}" ${isSelected ? 'checked' : ''}>
+                            <label for="option${i}">${option}</label>
+                        </div>
+                    `;
+                });
+            } else {
+                question.options.forEach((option, i) => {
+                    const isSelected = userAnswers[index] && userAnswers[index][0] === i;
+                    questionHTML += `
+                        <div class="option-item ${isSelected ? 'selected' : ''}" data-index="${i}">
+                            <input type="radio" id="option${i}" name="q${index}" value="${i}" ${isSelected ? 'checked' : ''}>
+                            <label for="option${i}">${option}</label>
+                        </div>
+                    `;
+                });
+            }
+            
+            questionHTML += '</div>';
+            
+            // Update question content
+            currentQuestionElement.innerHTML = questionHTML;
+            
+            // Add event listeners to options
+            const optionItems = currentQuestionElement.querySelectorAll('.option-item');
+            optionItems.forEach(item => {
+                item.addEventListener('click', () => selectOption(item, index));
+            });
+            
+            // Update navigation buttons
+            updateNavigationButtons();
         }
-        
-        if (inputElement.checked) {
-            // Uncheck if already checked
-            inputElement.checked = false;
-            userAnswers[questionIndex] = userAnswers[questionIndex].filter(i => i !== optionIndex);
-            optionElement.classList.remove('selected');
-        } else {
-            // Check if unchecked
-            inputElement.checked = true;
-            userAnswers[questionIndex].push(optionIndex);
-            optionElement.classList.add('selected');
+
+        // Handle option selection
+        function selectOption(optionElement, questionIndex) {
+            const optionIndex = parseInt(optionElement.dataset.index);
+            const question = currentQuestions[questionIndex];
+            const inputElement = optionElement.querySelector('input');
+            
+            if (question.multiple) {
+                // For checkboxes (multiple selection)
+                if (!userAnswers[questionIndex]) {
+                    userAnswers[questionIndex] = [];
+                }
+                
+                if (inputElement.checked) {
+                    // Uncheck if already checked
+                    inputElement.checked = false;
+                    userAnswers[questionIndex] = userAnswers[questionIndex].filter(i => i !== optionIndex);
+                    optionElement.classList.remove('selected');
+                } else {
+                    // Check if unchecked
+                    inputElement.checked = true;
+                    userAnswers[questionIndex].push(optionIndex);
+                    optionElement.classList.add('selected');
+                }
+            } else {
+                // For radio buttons (single selection)
+                const allOptions = currentQuestionElement.querySelectorAll('.option-item');
+                allOptions.forEach(opt => {
+                    opt.classList.remove('selected');
+                    opt.querySelector('input').checked = false;
+                });
+                
+                inputElement.checked = true;
+                optionElement.classList.add('selected');
+                userAnswers[questionIndex] = [optionIndex];
+            }
+            
+            // Update navigation buttons
+            updateNavigationButtons();
         }
-    } else {
-        // For radio buttons (single selection)
-        const allOptions = currentQuestionElement.querySelectorAll('.option-item');
-        allOptions.forEach(opt => {
-            opt.classList.remove('selected');
-            opt.querySelector('input').checked = false;
-        });
-        
-        inputElement.checked = true;
-        optionElement.classList.add('selected');
-        userAnswers[questionIndex] = [optionIndex];
-    }
-    
-    // Update navigation buttons
-    updateNavigationButtons();
-}
 
-// Navigate to previous question
-function goToPreviousQuestion() {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        loadQuestion(currentQuestionIndex);
-        updateProgressBar();
-    }
-}
-
-// Navigate to next question
-function goToNextQuestion() {
-    if (currentQuestionIndex < currentQuestions.length - 1) {
-        currentQuestionIndex++;
-        loadQuestion(currentQuestionIndex);
-        updateProgressBar();
-    }
-}
-
-// Update navigation buttons based on current question
-function updateNavigationButtons() {
-    // Previous button
-    if (currentQuestionIndex === 0) {
-        prevButton.classList.add('btn-disabled');
-    } else {
-        prevButton.classList.remove('btn-disabled');
-    }
-    
-    // Next and Submit buttons
-    if (currentQuestionIndex === currentQuestions.length - 1) {
-        nextButton.style.display = 'none';
-        
-        // Only show submit button if all questions have been answered
-        if (allQuestionsAnswered()) {
-            submitButton.style.display = 'inline-block';
-        } else {
-            submitButton.style.display = 'none';
+        // Navigate to previous question
+        function goToPreviousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+                updateProgressBar();
+            }
         }
-    } else {
-        nextButton.style.display = 'inline-block';
-        submitButton.style.display = 'none';
-    }
-}
 
-// Check if all questions have been answered
-function allQuestionsAnswered() {
-    return Object.keys(userAnswers).length === currentQuestions.length;
-}
-
-// Update progress bar
-function updateProgressBar() {
-    const progress = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
-    progressBar.style.width = `${progress}%`;
-}
-
-// Timer functions
-function startTimer() {
-    seconds = 0;
-    minutes = 0;
-    updateTimerDisplay();
-    timerInterval = setInterval(updateTimer, 1000);
-}
-
-function updateTimer() {
-    seconds++;
-    if (seconds >= 60) {
-        seconds = 0;
-        minutes++;
-    }
-    updateTimerDisplay();
-}
-
-function updateTimerDisplay() {
-    timerElement.textContent = `Time: ${padTime(minutes)}:${padTime(seconds)}`;
-}
-
-function padTime(time) {
-    return time.toString().padStart(2, '0');
-}
-
-function resetTimer() {
-    clearInterval(timerInterval);
-    seconds = 0;
-    minutes = 0;
-    updateTimerDisplay();
-}
-
-// Submit assessment and show results
-function submitAssessment() {
-    // Stop timer
-    clearInterval(timerInterval);
-    
-    // Calculate score
-    let correctAnswers = 0;
-    currentQuestions.forEach((question, index) => {
-        if (isAnswerCorrect(index)) {
-            correctAnswers++;
+        // Navigate to next question
+        function goToNextQuestion() {
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+                updateProgressBar();
+            }
         }
-    });
-    
-    const scorePercentage = Math.round((correctAnswers / currentQuestions.length) * 100);
-    
-    // Update results elements
-    document.getElementById('score-percentage').textContent = `${scorePercentage}%`;
-    document.getElementById('correct-answers').textContent = correctAnswers;
-    document.getElementById('total-questions').textContent = currentQuestions.length;
-    
-    // Generate feedback
-    generateFeedback();
-    
-    // Show results section
-    questionSection.style.display = 'none';
-    resultsSection.style.display = 'block';
-    progressContainer.style.display = 'none';
-    timerElement.style.display = 'none';
-}
 
-// Check if a specific answer is correct
-function isAnswerCorrect(questionIndex) {
-    const question = currentQuestions[questionIndex];
-    const userAnswer = userAnswers[questionIndex] || [];
-    
-    // For correct answer, arrays must be same length and contain same elements
-    if (userAnswer.length !== question.correct.length) {
-        return false;
-    }
-    
-    // Sort both arrays for comparison
-    const sortedUserAnswer = [...userAnswer].sort((a, b) => a - b);
-    const sortedCorrect = [...question.correct].sort((a, b) => a - b);
-    
-    // Compare each element
-    for (let i = 0; i < sortedUserAnswer.length; i++) {
-        if (sortedUserAnswer[i] !== sortedCorrect[i]) {
-            return false;
+        // Update navigation buttons based on current question
+        function updateNavigationButtons() {
+            if (!currentQuestions || currentQuestions.length === 0) return;
+            
+            // Previous button
+            prevButton.classList.toggle('btn-disabled', currentQuestionIndex === 0);
+            
+            // Next and Submit buttons
+            const isLastQuestion = currentQuestionIndex === currentQuestions.length - 1;
+            nextButton.style.display = isLastQuestion ? 'none' : 'inline-block';
+            submitButton.style.display = (isLastQuestion && allQuestionsAnswered()) ? 'inline-block' : 'none';
         }
-    }
-    
-    return true;
-}
 
-// Generate feedback for each question
-function generateFeedback() {
-    const feedbackSection = document.getElementById('feedback-section');
-    feedbackSection.innerHTML = '';
-    
-    currentQuestions.forEach((question, index) => {
-        const isCorrect = isAnswerCorrect(index);
-        const userAnswer = userAnswers[index] || [];
-        
-        let feedbackHTML = `
-            <div class="feedback-item">
-                <div class="feedback-question">
-                    <span class="${isCorrect ? 'correct' : 'incorrect'}">
-                        <i class="fas fa-${isCorrect ? 'check' : 'times'}"></i>
-                        Question ${index + 1}: ${question.q}
-                    </span>
-                </div>
-                <div class="feedback-answer">
-                    <strong>Your answer:</strong> 
-        `;
-        
-        if (userAnswer.length === 0) {
-            feedbackHTML += 'No answer provided';
-        } else {
-            const selectedOptions = userAnswer.map(i => question.options[i]).join(', ');
-            feedbackHTML += selectedOptions;
+        // Check if all questions have been answered
+        function allQuestionsAnswered() {
+            if (!currentQuestions) return false;
+            return Object.keys(userAnswers).length === currentQuestions.length;
         }
-        
-        feedbackHTML += `
-                </div>
-                <div class="feedback-answer">
-                    <strong>Correct answer:</strong> 
-                    ${question.correct.map(i => question.options[i]).join(', ')}
-                </div>
-                <div class="feedback-explanation">
-                    <strong>Explanation:</strong> ${question.explanation}
-                </div>
-            </div>
-        `;
-        
-        feedbackSection.innerHTML += feedbackHTML;
-    });
-}
 
-// Restart assessment
-function restartAssessment() {
-    resultsSection.style.display = 'none';
-    categorySection.style.display = 'block';
-}
-
-// Generate and show certificate
-function showCertificate() {
-    // Calculate score
-    let correctAnswers = 0;
-    currentQuestions.forEach((question, index) => {
-        if (isAnswerCorrect(index)) {
-            correctAnswers++;
+        // Update progress bar
+        function updateProgressBar() {
+            if (!currentQuestions || currentQuestions.length === 0) return;
+            const progress = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
+            progressBar.style.width = `${progress}%`;
         }
-    });
-    
-    const scorePercentage = Math.round((correctAnswers / currentQuestions.length) * 100);
-    
-    // Update certificate details
-    document.getElementById('certificate-name').textContent = 'Learner';
-    document.getElementById('certificate-category').textContent = getCategoryDisplayName(currentCategory) + ' - ' + capitalizeFirstLetter(currentDifficulty);
-    document.getElementById('certificate-score').textContent = `${scorePercentage}%`;
-    
-    // Get and format current date
-    const today = new Date();
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('certificate-date').textContent = today.toLocaleDateString('en-US', options);
-    
-    // Show certificate
-    document.getElementById('certificate-container').style.display = 'flex';
-}
 
-// Helper function to get display name for category
-function getCategoryDisplayName(category) {
-    const displayNames = {
-        'communication': 'Communication Excellence',
-        'behavioral': 'Behavioral Excellence',
-        'functional': 'Functional Excellence'
-    };
-    return displayNames[category] || category;
-}
+        // Timer functions
+        function startTimer() {
+            seconds = 0;
+            minutes = 0;
+            updateTimerDisplay();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
 
-// Helper function to capitalize first letter
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-                                                    }
-                    
+        function updateTimer() {
+            seconds++;
+            if (seconds >= 60) {
+                seconds = 0;
+                minutes++;
+            }
+            updateTimerDisplay();
+        }
+
+        function updateTimerDisplay() {
+            timerElement.textContent = `Time: ${padTime(minutes)}:${padTime(seconds)}`;
+        }
+
+        function padTime(time) {
+            return time.toString().padStart(2, '0');
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            seconds = 0;
+            minutes = 0;
+            updateTimerDisplay();
+        }
+
+        // Submit assessment and show results
+        function submitAssessment() {
+            // Stop timer
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            let correctAnswers = 0;
+            currentQuestions.forEach((question, index) => {
+                if (isAnswerCorrect(index)) {
+                    correctAnswers++;
+                }
+            });
+            
+            const scorePercentage = Math.round((correctAnswers / currentQuestions.length) * 100);
+            
+            // Update results elements
+            document.getElementById('score-percentage').textContent = `${scorePercentage}%`;
+            document.getElementById('correct-answers').textContent = correctAnswers;
+            document.getElementById('total-questions').textContent = currentQuestions.length;
+            
+            // Generate feedback
+            generateFeedback();
+            
+            // Show results section
+            questionSection.style.display = 'none';
+            resultsSection.style.display = 'block';
+            progressContainer.style.display = 'none';
+            timerElement.style.display = 'none';
+        }
+
+        // Check if a specific answer is correct
+        function isAnswerCorrect(questionIndex) {
+            const question = currentQuestions[questionIndex];
+            const userAnswer = userAnswers[questionIndex] || [];
+            
+            // For correct answer, arrays must be same length and contain same elements
+            if (userAnswer.length !== question.correct.length) {
+                return false;
+            }
+            
+            // Sort both arrays for comparison
+            const sortedUserAnswer = [...userAnswer].sort((a, b) => a - b);
+            const sortedCorrect = [...question.correct].sort((a, b) => a - b);
+            
+            // Compare each element
+            for (let i = 0; i < sortedUserAnswer.length; i++) {
+                if (sortedUserAnswer[i] !== sortedCorrect[i]) {
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+
+        // Generate feedback for each question
+        function generateFeedback() {
+            const feedbackSection = document.getElementById('feedback-section');
+            feedbackSection.innerHTML = '';
+            
+            currentQuestions.forEach((question, index) => {
+                const isCorrect = isAnswerCorrect(index);
+                const userAnswer = userAnswers[index] || [];
+                
+                let feedbackHTML = `
+                    <div class="feedback-item">
+                        <div class="feedback-question">
+                            <span class="${isCorrect ? 'correct' : 'incorrect'}">
+                                <i class="fas fa-${isCorrect ? 'check' : 'times'}"></i>
+                                Question ${index + 1}: ${question.q}
+                            </span>
+                        </div>
+                        <div class="feedback-answer">
+                            <strong>Your answer:</strong> 
+                `;
+                
+                if (userAnswer.length === 0) {
+                    feedbackHTML += 'No answer provided';
+                } else {
+                    const selectedOptions = userAnswer.map(i => question.options[i]).join(', ');
+                    feedbackHTML += selectedOptions;
+                }
+                
+                feedbackHTML += `
+                        </div>
+                        <div class="feedback-answer">
+                            <strong>Correct answer:</strong> 
+                            ${question.correct.map(i => question.options[i]).join(', ')}
+                        </div>
+                        <div class="feedback-explanation">
+                            <strong>Explanation:</strong> ${question.explanation}
+                        </div>
+                    </div>
+                `;
+                
+                feedbackSection.innerHTML += feedbackHTML;
+            });
+        }
+
+        // Restart assessment
+        function restartAssessment() {
+            resultsSection.style.display = 'none';
+            categorySection.style.display = 'block';
+            resetTimer();
+        }
+
+        // Generate and show certificate
+        function showCertificate() {
+            // Calculate score
+            let correctAnswers = 0;
+            currentQuestions.forEach((question, index) => {
+                if (isAnswerCorrect(index)) {
+                    correctAnswers++;
+                }
+            });
+            
+            const scorePercentage = Math.round((correctAnswers / currentQuestions.length) * 100);
+            
+            // Update certificate details
+            document.getElementById('certificate-name').textContent = 'Learner';
+            document.getElementById('certificate-category').textContent = getCategoryDisplayName(currentCategory) + ' - ' + capitalizeFirstLetter(currentDifficulty);
+            document.getElementById('certificate-score').textContent = `${scorePercentage}%`;
+            
+            // Get and format current date
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('certificate-date').textContent = today.toLocaleDateString('en-US', options);
+            
+            // Show certificate
+            document.getElementById('certificate-container').style.display = 'flex';
+        }
+
+        // Helper function to get display name for category
+        function getCategoryDisplayName(category) {
+            const displayNames = {
+                'communication': 'Communication Excellence',
+                'behavioral': 'Behavioral Excellence',
+                'functional': 'Functional Excellence'
+            };
+            return displayNames[category] || category;
+        }
+
+        // Helper function to capitalize first letter
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+    </script>
+</body>
+</html>
